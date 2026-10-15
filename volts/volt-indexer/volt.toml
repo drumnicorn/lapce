@@ -1,0 +1,26 @@
+name = "volt-indexer"
+version = "0.1.0"
+author = "drumnicorn"
+display-name = "Volt Indexer"
+description = "Row-based index of toml, rs, svg, gguf, json, xaml and xml files, exposed through workspace symbol search"
+repository = "https://github.com/drumnicorn/lapce"
+wasm = "volt-indexer.wasm"
+
+[activation]
+workspace-contains = [
+    "**/*.toml",
+    "**/*.rs",
+    "**/*.svg",
+    "**/*.gguf",
+    "**/*.json",
+    "**/*.xaml",
+    "**/*.xml",
+]
+
+[config."maxFileBytes"]
+default = 2097152
+description = "Text files larger than this many bytes are skipped (gguf files only have their header read)."
+
+[config."maxSymbolResults"]
+default = 500
+description = "Maximum number of workspace symbol results returned per query."
