@@ -1,0 +1,21 @@
+[package]
+name = "volt-indexer"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Lapce volt that builds a row-based index of workspace files"
+publish = false
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+strip = true
+
+# Standalone crate: keep it out of the Lapce workspace so it can be built for
+# wasm32-wasip1 without touching the editor's dependency graph.
+[workspace]
